@@ -16,7 +16,7 @@ dictcode = { "GDP" : "NY.GDP.MKTP.CD" ,
         } # WorldBank official codes for respective datasets.
 
 
-class Data(BaseModel):
+class Data(BaseModel): #Type of incoming data
     indicator: str
     countries: list
 
@@ -29,17 +29,17 @@ async def process(data: Data):
     countries = inputdata["countries"]
     indicator = inputdata["indicator"]
     
-    iso_countries = coco.convert(names=countries, to = "ISO3")
+    iso_countries = coco.convert(names=countries, to = "ISO3") #Converting country names to their respective ISO3 value as world bank accepts that
     
-    indicator_code = dictcode[indicator]
+    indicator_code = dictcode[indicator] #Finding indicator codes for respective indicator names
     
-    valuelist = []
+    valuelist = [] #Getting all the values for each country
     for iso_country in iso_countries:
         value = wbdata.get_data(indicator_code, country=iso_country)[3]['value']
         indicator = wbdata.get_data(indicator_code, country=iso_country)[3]['indicator']['value']
         valuelist.append(round(value,1))
 
-    return {"data":valuelist, "indicator":indicator}
+    return {"data":valuelist, "indicator":indicator} #Returning the data
 
 
 if __name__ == "__main__":
