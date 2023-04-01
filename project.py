@@ -1,9 +1,7 @@
 import requests
 import plotext as plt
 from tabulate import tabulate
-import json
-from tqdm import tqdm
-import time
+
 
 dict1 = { "Choose your number!" : ['1','2','3','4','5','6','7','8'],
             "Indicator" : ['GDP','GDP per Capita PPP','GDP Growth Rate','Inflation Rate','Unemployment Rate','Fertility rate',

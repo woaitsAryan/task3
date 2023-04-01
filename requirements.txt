@@ -1,0 +1,7 @@
+requests
+plotext
+tabulate
+fastapi
+pydantic
+wbdata
+country_converter
